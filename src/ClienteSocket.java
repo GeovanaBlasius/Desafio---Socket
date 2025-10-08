@@ -22,14 +22,12 @@ public class ClienteSocket {
             saida = new PrintStream(cliente.getOutputStream());
 
             do {
-                // Lê TODAS as linhas do menu antes de pedir input
                 String linha;
                 StringBuilder menuCompleto = new StringBuilder();
 
                 while ((linha = dados.readLine()) != null) {
                     menuCompleto.append(linha).append("\n");
 
-                    // Para quando chegar na linha que pede a opção
                     if (linha.contains("Escolha uma opção:") ||
                             linha.contains("Escolha:") ||
                             linha.equals("Escolha uma opção:")) {
@@ -49,17 +47,16 @@ public class ClienteSocket {
 
                 // Se for cadastrar evento, processa os dados
                 if ("1".equals(texto)) {
-                    // Lê a instrução do servidor
                     String instrucao = dados.readLine();
                     System.out.println(instrucao);
 
-                    // Pede os dados do usuário
+                    // Pede os dados 
                     System.out.print("Dados do evento > ");
                     String dadosEvento = entrada.nextLine();
                     saida.println(dadosEvento);
                 }
 
-            } while (!"3".equals(texto)); // Use "3" para sair, não "sair"
+            } while (!"3".equals(texto)); 
 
             System.out.println("Conexão encerrada!");
 
@@ -70,4 +67,5 @@ public class ClienteSocket {
             entrada.close();
         }
     }
+
 }
